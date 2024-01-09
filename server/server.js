@@ -11,9 +11,9 @@ const server = express(); //vår server
 //skicka och få data genom JSON format, hur data avkodas i våran server
 server.use(express.json()).use(express.urlencoded({extended: false}))
 .use((req, res, next) => { 
-    res.header('Access-Controll-Allow-Origin', '*'); //tillåter kommunikation från vissa ställen, alla anropar vår server, typ.
-    res.header('Access-Controll-Allow-Headers', '*');
-    res.header('Access-Controll-Allow-Methods', '*');
+    res.header('Access-Control-Allow-Origin', '*'); //tillåter kommunikation från vissa ställen, alla anropar vår server, typ.
+    res.header('Access-Control-Allow-Headers', '*');
+    res.header('Access-Control-Allow-Methods', '*');
 
     next(); //Nu ska den forstätta att processa förfrågan enligt kommande regler, alltså att det föregående fortsätter
 });
@@ -23,7 +23,7 @@ server.listen(3000, () => {
     console.log('Servern körs på http://localhost:3000')
 })
 
-//get-request
+//get-request, /books är våran route för get-förfrågningar
 server.get('/books', (req, res) => { //req- (request) arbeta med förfårgan, res -  (response) arbeta med svar
     const sql = 'SELECT * FROM books'; //väljer allt från table books
 
