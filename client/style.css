@@ -1,0 +1,16 @@
+/*Bakgrundsfärg*/
+body {
+    background-color: grey;
+}
+/*Bakgrundsfärg till formulär*/
+.bg-purple {
+    background-color: #7951A8;
+}
+
+/*Färg till knapparma*/
+.custom-grey-btn {
+    background-color: lightgrey;
+}
+.bg-orange {
+    background-color: orange;
+}

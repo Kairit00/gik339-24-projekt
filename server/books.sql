@@ -9,16 +9,16 @@ CREATE TABLE books (
 );
 INSERT INTO books (title, author, genre, release_date, colour)
 VALUES
-    ('To Kill a Mockingbird', 'Harper Lee', 'Fiction, Southern', 1960, 'red'),
-    (1984, 'George Orwell', 'Dystopian, Political fiction', 1949, 'blue'),
-    ('Pride and Prejudice', 'Jane Austen', 'Classic, Romance', 1813, 'red'),
-    ('The Old Man and the Sea', 'Ernest Hemingway', 'Fiction, Novella',1952, 'blue'),
+    ('To Kill a Mockingbird', 'Harper Lee', 'Skönlitteratur', 1960, 'red'),
+    (1984, 'George Orwell', 'Dystopisk, Politisk skönlitteratur', 1949, 'blue'),
+    ('Pride and Prejudice', 'Jane Austen', 'Klassisk, Romantik', 1813, 'red'),
+    ('The Old Man and the Sea', 'Ernest Hemingway', 'Skönlitteratur, Novell',1952, 'blue'),
     ('Harry Potter and the Philosophers Stone', 'J.K. Rowling', 'Fantasy',1997, 'orange'),
     ('The Lord of the Rings', 'J.R.R. Tolkien', 'Fantasy', 1954, 'purple'),
-    ('To the Lighthouse', 'Virginia Woolf', 'Modernist, Stream of consciousness', 1927, 'green'),
-    ('The Hunger Games', 'Suzanne Collins', 'Dystopian, Science Fiction',2008, 'red'),
-    ('The Great Gatsby', 'F.Scott Fitzgerald', 'Fiction, Jazz Age, Tragedy', 1925, 'purple'),
-    ('One Hundred Years of Solitude', 'Gabriel García Márquez', 'Magic Realism', 1967, 'orange');
+    ('To the Lighthouse', 'Virginia Woolf', ' Modernistisk, Medvetandeström', 1927, 'green'),
+    ('The Hunger Games', 'Suzanne Collins', 'Dystopisk, Science Fiction',2008, 'red'),
+    ('The Great Gatsby', 'F.Scott Fitzgerald', 'Skönlitteratur, Jazzåldern, Tragedi', 1925, 'purple'),
+    ('One Hundred Years of Solitude', 'Gabriel García Márquez', ' Magisk Realism', 1967, 'orange');
 
 
     

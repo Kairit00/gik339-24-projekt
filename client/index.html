@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Css Ramverket Bootstrap-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- Css fil-->
+    <title>Projektarbete</title>
+</head>
+
+<body>
+    <header>
+        <!-- Titeln på hemsidan -->
+        <div class="container-text mt-2">
+            <h1 class="text-center"><b>Bokregistrering</b></h1>
+            <h3 class="text-center">Lägg till nya böcker eller ändra på dem som redan finns </h3>
+        </div>
+    </header>
+    
+    <main>
+    <!--         ------ Formuläret---           -->
+        <div class="container-form mt-3">
+            <div class="row justify-content-md-center mx-auto">
+                <div class="col-8">
+                    <div class="card bg-purple p-3">
+                        <form id="booksForm"> <!-- Id till formulär-->
+                            <!--             ----boktitel---                              -->
+                            <div>
+                                <label for="book-title"><b>Boktitel:</b> </label>
+                                <input type="text" class="form-control" placeholder="Skriv din text här">
+                            </div>
+                            <div>
+                                <!--                ---- Författare---                          -->
+                                <label for="author"> <b>Författare: </b> </label>
+                                <input type="text" class="form-control" placeholder="Skriv din text här">
+                            </div>
+                            <div>
+                                <!--                ---- Genre ---                              -->
+                                <label for="genre"> <b>Genre: </b> </label>
+                                <input type="text" class="form-control" placeholder="Skriv din text här">
+                            </div>
+                            <div>
+                                <!--                --- Året boken släpptes -----                   -->
+                                <label for="year-released"> <b>Vilket år boken släpptes:</b> </label>
+                                <input type="text" class="form-control" placeholder="Skriv din text här ">
+                            </div>
+                            <!--             Färg               -->
+                            <div>
+                                <label for="colour"> <b>Färg: </b> </label>
+                                <select name ="colour" class="form-control">
+                                    <option value ="red">Röd</option>
+                                    <option value ="blue">Blå</option>
+                                    <option value ="orange">Orange</option>
+                                    <option value ="purple">Lila</option>
+                                    <option value ="green">Grön</option>
+                                </select>
+                            </div>
+                            <!---               --- Knappar ----                                -->
+                            <div class ="row mt-3">
+                                <div class="col-md-6">
+                                    <button
+                                        type="submit" 
+                                        class="btn custom-grey-btn"
+                                        name="submit-form">
+                                        Skicka
+                                    </button>
+                                </div>
+                            
+                                <div class ="col-md-6 text-right">
+                                    <button 
+                                        type="reset" 
+                                        class ="btn custom-grey-btn"
+                                        name="clear-user-form">
+                                        Rensa fältet
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!---       Lista           -->
+        <div id="listContainer">
+            <div class="row mt-3 justify-content-center px-5">
+                <div class="col-md-5 mb-2">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-success border-success text-white">
+                                <h3>Titel</h3>
+                                <h4>Författare</h4>
+                                <h4>Genre</h4>
+                                <p>Årtal den släpptes:</p>
+                                <div>
+                                    <button class="btn custom-grey-btn">
+                                        Ändra
+                                    </button>
+                                    <button class="btn custom-grey-btn">
+                                        Ta bort
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+        </div>        
+
+
+        <!-- Meddelanderuta -->
+        <div class="modal" id="messageModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p id="messageText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--Grejer som CSS - ramverket Bootstrap behöver  -->
+    <script src="script.js"></script> <!--Javascript filer-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
