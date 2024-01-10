@@ -21,6 +21,8 @@
     
     <main>
     <!--         ------ Formuläret---           -->
+
+
         <div class="container-form mt-3">
             <div class="row justify-content-md-center mx-auto">
                 <div class="col-8">
@@ -83,44 +85,22 @@
             </div>
         </div>
 
-
-        <!---       Lista           -->
-        <div id="listContainer">
-            <div class="row mt-3 justify-content-center px-5">
-                <div class="col-md-5 mb-2">
-                    <div class="card">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item bg-success border-success text-white">
-                                <h3>Titel</h3>
-                                <h4>Författare</h4>
-                                <h4>Genre</h4>
-                                <p>Årtal den släpptes:</p>
-                                <div>
-                                    <button class="btn custom-grey-btn">
-                                        Ändra
-                                    </button>
-                                    <button class="btn custom-grey-btn">
-                                        Ta bort
-                                    </button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div> 
-            </div>
-        </div>        
-
-
         <!-- Meddelanderuta -->
-        <div class="modal" id="messageModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <p id="messageText"></p>
-                    </div>
+    <div class="modal" id="messageModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p id="messageText"></p>
                 </div>
             </div>
         </div>
+    </div>
+
+
+        <!---       Lista           -->
+        <div id="listContainer">
+        </div>        
+
     </main>
     <!--Grejer som CSS - ramverket Bootstrap behöver  -->
     <script src="script.js"></script> <!--Javascript filer-->

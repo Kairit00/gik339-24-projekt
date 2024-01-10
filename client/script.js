@@ -21,10 +21,10 @@ function fetchData() {
                                 <h5>${book.genre}</h5>
                                 <p>Året den släpptes: ${book.release_date}</p>
                                 <div>
-                                    <button class="btn custom-grey-btn">
+                                    <button class="btn custom-grey-btn" onclick="setCurrentBook(${book.book_id})"> 
                                         Ändra
                                     </button>
-                                    <button class="btn custom-grey-btn">
+                                    <button class="btn custom-grey-btn" onclick="deleteBook(${book.book_id})">
                                         Ta bort
                                     </button>
                                 </div>
@@ -49,7 +49,32 @@ function fetchData() {
         });
 }
 
+function setCurrentBook(id) {
+    console.log('current', id);
+    fetch(`${url}/${id}`)
+        .then(result => result.json())
+        .then(book => {
+            console.log(book);
+            booksForm.title.value = book.title; //få fram det som ståd i card till fältet
+            booksForm.author.value = book.author;
+            booksForm.genre.value = book.genre;
+            booksForm.release_date.value = book.release_date;
+            booksForm.colour.value = book.colour;
 
+            //kolla om det är en ny eller befintlig bok
+            localStorage.setItem("currentId", book.book_id);
+        });
+}
+
+function deleteBook(id) {
+    console.log('delete',id);
+    fetch(`${url}/${id}`, {method: 'DELETE'})
+        .then(result => fetchData());
+}
+
+
+
+//få färgerna
 function getColourClass(colourName) {
     const colourMap = {
         'blue': 'primary',
@@ -66,6 +91,7 @@ function getColourClass(colourName) {
 //Få tag i formuläret
 booksForm.addEventListener('submit', handleSubmit); //submitknappen
 
+//ta hand om submitknappen
 function handleSubmit(e) { //eventlyssanre till submitknappen
     e.preventDefault(); //nu laddar inte sidan om, standard är att sidan laddart om när man trycker på en submit knapp
     const serverBookObject = {
@@ -82,8 +108,13 @@ function handleSubmit(e) { //eventlyssanre till submitknappen
     serverBookObject.colour = booksForm.colour.value; 
 
     //nu ska vi skicka den till servern
+    const id = localStorage.getItem("currentId");
+    if(id) {
+        serverBookObject.book_id = id
+    };
+
     const request = new Request(url, { //vi skapar ett nytt requestelement
-        method: 'POST',
+        method: serverBookObject.book_id ? 'PUT' : 'POST',
         headers: {
             'content-type': 'application/json'
         },
@@ -92,6 +123,8 @@ function handleSubmit(e) { //eventlyssanre till submitknappen
 
     fetch(request).then(response => {
         fetchData();
+
+        localStorage.removeItem('currentId');
         booksForm.reset();
     });
 }

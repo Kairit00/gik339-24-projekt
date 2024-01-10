@@ -21,7 +21,7 @@ server.use(express.json()).use(express.urlencoded({extended: false}))
 //starta upp servern på port 3000
 server.listen(3000, () => {
     console.log('Servern körs på http://localhost:3000')
-})
+});
 
 //get-request, /books är våran route för get-förfrågningar
 server.get('/books', (req, res) => { //req- (request) arbeta med förfårgan, res -  (response) arbeta med svar
@@ -34,7 +34,21 @@ server.get('/books', (req, res) => { //req- (request) arbeta med förfårgan, re
             res.send(rows); //om allt gick bra så skickar vi raderna som kommer från förfrågningen
         }
     })
-})
+});
+//hämta upp en användare för att kunna ändra
+server.get('/books/:id', (req, res) => {
+    const id = req.params.id;
+
+    const sql = `SELECT * FROM books WHERE book_id=${id}`; //väljer allt från table books
+
+    db.all(sql, (err, rows) => { 
+        if(err) { //om det blir fel, visa vad felet blev
+            res.status(500).send(err);
+        } else {
+            res.send(rows[0]); //om allt gick bra så skickar vi raderna som kommer från förfrågningen
+        }
+    })
+});
 
 //post-request
 server.post('/books', (req, res) => { // vi kan tillochmed se i terminalen vad man har skrivit
@@ -54,5 +68,50 @@ server.post('/books', (req, res) => { // vi kan tillochmed se i terminalen vad m
 
 //put-update
 server.put('/books', (req, res) => {
-    //mål: UPDATE users SET
-})
+    //mål: UPDATE users SET title="something", samma med alla kategorier, where id=1
+    const bodyData = req.body;
+
+    const id = bodyData.book_id;
+    const book = {
+        title: bodyData.title, 
+        author: bodyData.author,
+        genre: bodyData.genre,
+        release_date: bodyData.release_date,
+        colour: bodyData.colour
+    };
+    let updateString = '';
+    const columnsArray = Object.keys(book);
+    columnsArray.forEach((column, i) => {
+        updateString += `${column}="${book[column]}"`;//hämta ut värdet hos varje key (title, author, osv.)
+        if(i !== columnsArray.length -1) updateString += ','; //om vi inte står på sista elementet, lägg till ett kommatecken
+
+    });
+    const sql = `UPDATE books SET ${updateString} WHERE book_id=${id}`;
+
+    db.run(sql, (err) => { 
+        if(err) { //om nått skulle gå fel, skicka felmeddelandet
+            console.log(err); 
+            res.status(500).send(err);
+        } else {
+            res.send('Boken uppdaterades');
+        }
+    });
+
+});
+
+//delete - funktion
+server.delete('/books/:id', (req, res) => {
+    const id = req.params.id; //få tag i boken som ska tas bort
+    const sql = `DELETE FROM books WHERE book_id=${id}`; //sql query för att ta bort boken
+
+    db.run(sql, (err) => {
+        if(err) {
+            console.log(err);
+            res.status(500).send(err);
+        } else {
+            res.send('Boken borttagen');
+        }
+    });
+
+});
+
