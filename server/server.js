@@ -35,3 +35,24 @@ server.get('/books', (req, res) => { //req- (request) arbeta med förfårgan, re
         }
     })
 })
+
+//post-request
+server.post('/books', (req, res) => { // vi kan tillochmed se i terminalen vad man har skrivit
+    const book = req.body;
+    const sql = `INSERT INTO books(title, author, genre, release_date, colour) VALUES
+    (?, ?, ?, ?, ?)`;
+
+    db.run(sql, Object.values(book), (err) => { 
+        if(err) { //om nått skulle gå fel, skicka felmeddelandet
+            console.log(err); 
+            res.status(500).send(err);
+        } else {
+            res.send('Boken sparades');
+        }
+    });
+});
+
+//put-update
+server.put('/books', (req, res) => {
+    //mål: UPDATE users SET
+})
